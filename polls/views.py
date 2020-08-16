@@ -4,24 +4,73 @@ from .models import Question, Choice
 from django.db.models import F
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 # Create your views here.
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        """
+        Return the last five published questions (not including those set to be
+        published in the future).
+        Also excludes questions that don't have choices
+        """
+        past_questions = Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
+
+        past_questions_with_choices = []
+        for question in past_questions:
+            if question.choice_set.count() != 0:
+                past_questions_with_choices.append(question)
+
+        return past_questions_with_choices
 
 
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        Also excludes questions that don't have choices.
+        """
+        past_questions = Question.objects.filter(
+            pub_date__lte=timezone.now()
+        )
 
+        question_texts_of_past_questions_with_choices = []
+        for question in past_questions:
+            if question.choice_set.count() != 0:
+                question_texts_of_past_questions_with_choices.append(question.question_text)
+
+        past_questions_with_choices = past_questions.filter(question_text__in=question_texts_of_past_questions_with_choices)
+        # return Question.objects.filter(pub_date__lte=timezone.now())
+        # return past_questions_with_choices
+        return past_questions_with_choices
 
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        Also excludes questios that don't have choices.
+        """
+        past_questions = Question.objects.filter(
+            pub_date__lte=timezone.now()
+        )
+
+        question_texts_of_past_questions_with_choices = []
+        for question in past_questions:
+            if question.choice_set.count() != 0:
+                question_texts_of_past_questions_with_choices.append(question.question_text)
+
+        past_questions_with_choices = past_questions.filter(question_text__in=question_texts_of_past_questions_with_choices)
+        # return Question.objects.filter(pub_date__lte=timezone.now())
+        # return past_questions_with_choices
+        return past_questions_with_choices
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

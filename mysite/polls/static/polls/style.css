@@ -1,7 +1,20 @@
+.content {
+    margin: auto;
+    width: 50%;  
+    font-size: x-large;
+}
+li {
+    border: 3px solid green;
+    padding: 30px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-size: x-large;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
-li a {
-    color: green;
-}
-body {
-    background: white url("images/polling.jpeg") no-repeat;
-}

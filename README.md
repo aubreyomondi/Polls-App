@@ -16,6 +16,7 @@ Already have a django project and would like to include this polls app?
 - Also include *path('polls/', include('polls.urls')),* in your project's urls.py file in the urlpatterns section.
 - While in your project's root directory run *python manage.py makemigrations polls* then run *python manage.py migrate*. This would create the needed tables for the polls app in your database.
 - You should now be able to access the polls app (e.g 127.0.0.1:8000/polls). Ofcourse after running *python manage.py runserver* in your project's root directory.
+- Add new questions and choices to those questions through the admin page (e.g 127.0.0.1:8000/admin).
 
 It's the most basic app you'll ever come across. Don't judge.
 

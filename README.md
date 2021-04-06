@@ -20,4 +20,3 @@ Already have a django project and would like to include this polls app?
 
 It's the most basic app you'll ever come across. Don't judge.
 
-A tutorial for the same is available in the official Django Documentation.

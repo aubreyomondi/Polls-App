@@ -13,30 +13,39 @@
 # output.json
 
 .ipynb_checkpoints
+.ipynb_checkpoints/
+/.ipynb_checkpoints
 /*/.ipynb_checkpoints
 /*/*/.ipynb_checkpoints
 /*/*/*/.ipynb_checkpoints
 /*/*/*/*/.ipynb_checkpoints
 
 config.yaml
+/config.yaml
 /*/config.yaml
 /*/*/config.yaml
 /*/*/*/config.yaml
 /*/*/*/*/config.yaml
 
 .idea
+.idea/
+/.idea
 /*/.idea
 /*/*/.idea
 /*/*/*/.idea
 /*/*/*/*/.idea
 
 venv
+venv/
+/venv
 /*/venv
 /*/*/venv
 /*/*/*/venv
 /*/*/*/*/venv
 
 __pycache__
+__pycache__/
+/__pycache__
 /*/__pycache__
 /*/*/__pycache__
 /*/*/*/__pycache__
